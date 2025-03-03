@@ -14,7 +14,8 @@ namespace BowlingGame.test
         {
             TestPlayer player1 = new (100, "Player1Test");
             TestPlayer player2 = new (5, "Player2Test");
-            GameManager gameManager = new (player1, player2);
+            GameManager gameManager = new GameManager();
+            gameManager.SetPlayers(player1, player2);
             GameManager.GameResult result = gameManager.StartGame();
             Assert.That(GameManager.GameResult.Player1Win == result);
         }
@@ -23,15 +24,18 @@ namespace BowlingGame.test
         {
             TestPlayer player1 = new (0, "Player1Test");
             TestPlayer player2 = new (10, "Player2Test");
-            GameManager gameManager = new (player1, player2);
+            GameManager gameManager = new GameManager();
+            gameManager.SetPlayers(player1, player2);
             GameManager.GameResult result = gameManager.StartGame();
-            Assert.That(GameManager.GameResult.Player2Win == resul        }
+            Assert.That(GameManager.GameResult.Player2Win == result);        
+        }
         [Test]
         public void TestTie()
         {
             TestPlayer player1 = new (10, "Player1Test");
             TestPlayer player2 = new (10, "Player2Test");
-            GameManager gameManager = new (player1, player2);
+            GameManager gameManager = new GameManager();
+            gameManager.SetPlayers(player1, player2);
             GameManager.GameResult result = gameManager.StartGame();
             Assert.That(GameManager.GameResult.Tie == result);
         }

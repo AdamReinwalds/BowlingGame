@@ -11,15 +11,20 @@ namespace BowlingGame
 {
     public class GameManager
     {
-        private IPlayer player1;
-        private IPlayer player2;
+        private IPlayer? player1;
+        private IPlayer? player2;
 
-        public GameManager(IPlayer player1, IPlayer player2) {
+        public void SetPlayers(IPlayer player1, IPlayer player2)
+        {
             this.player1 = player1;
             this.player2 = player2;
         }
         public GameResult StartGame()
         {
+            if (player1 == null || player2 == null)
+            {
+                throw new InvalidOperationException("Players not added");
+            }
             int player1Score = player1.GetScore();
             int player2Score = player2.GetScore();
             Console.WriteLine($"{player1.Name} scored {player1Score} & {player2.Name} scored {player2Score}");
