@@ -1,0 +1,11 @@
+﻿Use Case - Simulera en bowlingmatch mellan två spelare
+
+Aktör: Personal på bowlinghallen
+
+Beskrivning: Personalen på bowlinghallen ska kunna simulera en bowlingmatch mellan 
+två spelare genom att mata in deras namn. Spelet genererar poäng och bestämmer en 
+vinnare automatiskt. Resultatet sparas i databasen.
+
+Förutsättningar:
+Programmet måste vara igång.
+Minst två spelare måste anges för att starta en match.

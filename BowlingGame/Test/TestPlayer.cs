@@ -13,7 +13,7 @@ namespace BowlingGame.test
         public string Name { get; set; }
         public int Score { get; set; }
 
-        public TestPlayer(int score, string name)
+        public TestPlayer(string name, int score)
         {
             Name = name;
             Score = score;

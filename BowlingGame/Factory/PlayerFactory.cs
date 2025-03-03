@@ -1,9 +1,9 @@
-﻿using BowlingGame.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BowlingGame.Core;
 using BowlingGame.data;
 
 namespace BowlingGame.Factory
