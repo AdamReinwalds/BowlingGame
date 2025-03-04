@@ -16,6 +16,7 @@ namespace BowlingGame
     {
         private IPlayer? player1;
         private IPlayer? player2;
+        private readonly SingletonLogger _logger = SingletonLogger.Instance;
 
         public void SetPlayers(IPlayer player1, IPlayer player2)
         {
@@ -25,15 +26,12 @@ namespace BowlingGame
         public void Gameloop()
         {
             var serviceProvider = new ServiceCollection()
-                .AddSingleton<ILogger, ConsoleLogger>()
                 .AddTransient<IScoreGenerator, RandomScoreGenerator>()
                 .AddTransient<PlayerFactory>()
                 .AddDbContext<MyDbContext>()
                 .AddTransient<Game>()
                 .BuildServiceProvider();
 
-            var logger = serviceProvider.GetService<ILogger>() ??
-                throw new InvalidOperationException("Logger is not available.");
             var playerFactory = serviceProvider.GetRequiredService<PlayerFactory>();
 
             do
@@ -61,12 +59,11 @@ namespace BowlingGame
                 {
                     Console.WriteLine(player2.Name + " wins!🎳");
                 }
-                logger.Log("Results has been saved to the database.");
                 Console.WriteLine("Play again? (Y/N)");
             }
             while (Console.ReadLine().ToUpper() == "Y");
         }
-        public GameResult StartGame()
+        private GameResult StartGame()
         {
             if (player1 == null || player2 == null)
             {
@@ -87,6 +84,7 @@ namespace BowlingGame
                 context.Add(game);
                 context.SaveChanges();
             }
+            _logger.Log("Results has been saved to the database.");
 
             if (player1Score == player2Score)
             {
